@@ -2,6 +2,7 @@ import express from 'express';
 import pool from './config.js';
 import clientes from './modulos/categorias/ruta.js';
 import productos from './modulos/productos/ruta.js';
+import cors from 'cors';
 
 const app = express();
 
@@ -19,11 +20,18 @@ const getCategorias = async() =>{
 
 getCategorias()
 
+app.use(cors({
+  origin: 'http://localhost:4200' //importar el cors
+}));
 
 app.use(express.json());
 
+
+
 //configura el puerto
 app.set('port',process.env.DB_PORT);
+
+
 
 
 //ruta
